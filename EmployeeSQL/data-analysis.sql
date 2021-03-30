@@ -6,7 +6,7 @@ SELECT
 	e.sex,
 	s.salary
 FROM employees as e
-INNER JOIN salaries as s
+JOIN salaries as s
 ON s.emp_no = e.emp_no
 ORDER BY e.emp_no;
 
@@ -34,7 +34,17 @@ ON dm.emp_no = e.emp_no
 ORDER BY d.dept_no;
 
 --List the department of each employee with the following information: employee number, last name, first name, and department name.
-
+SELECT 
+	e.emp_no, 
+	e.last_name, 
+	e.first_name,
+	d.dept_name
+FROM employees as e
+JOIN dept_emp as de
+ON de.emp_no = e.emp_no
+JOIN departments as d
+ON d.dept_no = de.dept_no
+ORDER BY e.emp_no;
 
 --List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
 
