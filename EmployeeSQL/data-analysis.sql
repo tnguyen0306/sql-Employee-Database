@@ -4,8 +4,8 @@ SELECT e.emp_no,
 	   e.first_name,
 	   e.sex,
 	   s.salary
-FROM employees as e
-JOIN salaries as s
+FROM employees AS e
+JOIN salaries AS s
 ON s.emp_no = e.emp_no
 ORDER BY e.emp_no;
 
@@ -25,10 +25,10 @@ SELECT d.dept_no,
 	   dm.emp_no, 
 	   e.last_name, 
 	   e.first_name 
-FROM departments as d
-JOIN dept_manager as dm
+FROM departments AS d
+JOIN dept_manager AS dm
 ON d.dept_no = dm.dept_no
-JOIN employees as e
+JOIN employees AS e
 ON dm.emp_no = e.emp_no
 ORDER BY d.dept_no;
 
@@ -38,12 +38,13 @@ SELECT e.emp_no,
 	   e.last_name, 
 	   e.first_name,
 	   d.dept_name
-FROM employees as e
-JOIN dept_emp as de
+FROM employees AS e
+JOIN dept_emp AS de
 ON de.emp_no = e.emp_no
-JOIN departments as d
+JOIN departments AS d
 ON d.dept_no = de.dept_no
 ORDER BY e.emp_no;
+
 
 --5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
 SELECT first_name, 
@@ -52,31 +53,39 @@ FROM employees
 WHERE first_name = 'Hercules'
 AND last_name LIKE 'B%';
 
+
 --6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
 SELECT e.emp_no, 
 	   e.last_name, 
 	   e.first_name,
 	   d.dept_name
-FROM employees as e
-JOIN dept_emp as de
+FROM employees AS e
+JOIN dept_emp AS de
 ON de.emp_no = e.emp_no
-JOIN departments as d
+JOIN departments AS d
 ON d.dept_no = de.dept_no
 WHERE d.dept_name = 'Sales'
 ORDER BY e.emp_no;
+
 
 --7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
 SELECT e.emp_no, 
 	   e.last_name, 
 	   e.first_name,
 	   d.dept_name
-FROM employees as e
-JOIN dept_emp as de
+FROM employees AS e
+JOIN dept_emp AS de
 ON de.emp_no = e.emp_no
-JOIN departments as d
+JOIN departments AS d
 ON d.dept_no = de.dept_no
 WHERE d.dept_name = 'Sales'
 OR d.dept_name = 'Development'
 ORDER BY e.emp_no;
 
+
 --8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+SELECT last_name AS "Last Name",
+	   COUNT(last_name) AS "Frequency Count"
+FROM employees
+GROUP BY last_name
+ORDER BY COUNT(last_name) DESC;
