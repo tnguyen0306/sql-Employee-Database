@@ -90,3 +90,18 @@ SELECT last_name,
 FROM employees
 GROUP BY last_name
 ORDER BY COUNT(last_name) DESC;
+
+--Epilogue: Find Employee with ID number as 499942.
+SELECT e.emp_no, 
+	   e.last_name, 
+	   e.first_name,
+	   e.sex,
+	   e.hire_date,
+	   d.dept_name
+FROM employees AS e
+JOIN dept_emp AS de
+ON de.emp_no = e.emp_no
+JOIN departments AS d
+ON d.dept_no = de.dept_no
+WHERE e.emp_no = 499942
+ORDER BY e.emp_no;
